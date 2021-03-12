@@ -64,8 +64,10 @@
   
   export default {
     created(){
-      if (!User.loggedIn()) {
+      if (!user.loggedIn()) {
         this.$router.push({name: '/'})
+      }else{
+        this.allProduct();
       }
     },
     data(){
@@ -101,10 +103,7 @@
 
     }
 
-    },
-    created(){
-        this.allProduct();
-    },
+    }
     
   
 

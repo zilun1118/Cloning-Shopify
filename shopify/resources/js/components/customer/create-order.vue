@@ -83,8 +83,18 @@
   
   export default {
     created(){
-      if (!User.loggedIn()) {
+      if (!user.loggedIn()) {
         this.$router.push({name: '/'})
+      }
+      else{
+        let id = this.$route.params.id
+        axios.get('/api/customer/'+id)
+        .then(({data}) => (this.form.Customer_Name = data.name))
+        .catch(console.log('error'))
+
+        axios.get('/api/product/')
+        .then(({data}) => (this.products = data))
+
       }
     },
 
@@ -102,16 +112,6 @@
       products:{},
       customer:{}
     }
-  },
-  created(){
-  	let id = this.$route.params.id
-  	axios.get('/api/customer/'+id)
-  	.then(({data}) => (this.form.Customer_Name = data.name))
-  	.catch(console.log('error'))
-
-    axios.get('/api/product/')
-  	.then(({data}) => (this.products = data))
-
   },
 
   methods:{

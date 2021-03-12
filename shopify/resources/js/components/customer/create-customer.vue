@@ -57,7 +57,7 @@
     export default{
       created(){
         if(!user.loggedIn()){
-          this.$router.push({ name: 'home'})
+          this.$router.push({ name: '/'})
         }
       },
       data(){
